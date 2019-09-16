@@ -1,0 +1,12 @@
+## Ignore emacs downloads
+elpa
+helm-adaptive-history
+transient
+
+## ignore autsaves and recent files
+autosaves
+auto-save-list
+recentf
+
+
+
