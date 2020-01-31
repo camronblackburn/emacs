@@ -33,6 +33,8 @@
           org                  ; Outline-based notes management and organizer
           org-ref              ; citations bibliographies in org-mode
           pdf-tools            ; Emacs support library for PDF files
+          projectile           ; projectile ??
+          use-package          ;
           try                  ; Try out Emacs packages
           which-key)))         ; Display available keybindings in popup
   (ignore-errors ;; This package is only relevant for Mac OS X.
@@ -253,6 +255,40 @@
 
 (require 'org)
 
+;; set key for agenda
+(global-set-key (kbd "C-c a") 'org-agenda)
+
+;;file to save todo items
+(setq org-agenda-files (quote ("/Users/cblackburn/tracking/todo.org")))
+
+;;set priority range from A to C with default A
+(setq org-highest-priority ?A)
+(setq org-lowest-priority ?C)
+(setq org-default-priority ?A)
+
+;;set colours for priorities
+(setq org-priority-faces '((?A . (:foreground "LightSteelBlue" :weight bold))
+                           (?B . (:foreground "#F0DFAF"))
+                           (?C . (:foreground "OliveDrab"))))
+
+;;open agenda in current window
+(setq org-agenda-window-setup (quote current-window))
+
+;;capture todo items using C-c c t
+(define-key global-map (kbd "C-c c") 'org-capture)
+(setq org-capture-templates
+      '(("t" "todo" entry (file+headline "/Users/cblackburn/tracking/todo.org" "Tasks")
+         "* TODO [#A] %?")))
+
+;; automatically set todo items with current day's scheduled date
+(setq org-capture-templates
+      '(("t" "todo" entry (file+headline "/Users/cblackburn/tracking/todo.org" "Tasks")
+         "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")))
+
+;; set diary file to calendar. integrate cal to agenda
+(setq diary-file "/Users/cblackburn/tracking/cal")
+(setq org-agenda-include-diary t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Interactive functions;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -389,6 +425,52 @@ given, the duplicated region will be commented out."
 (eval-after-load 'ox-latex
   '(setq org-latex-pdf-process
          '("latexmk -pdflatex='pdflatex -shell-escape -interaction nonstopmode' -pdf -f %f")))
+
+;;-----------------------------------------
+;; platformIO mode
+;;-----------------------------------------
+
+;; 11/23/19
+;; platformio only runs if .ini is in root, but defaults root to .git base
+;; instead of the actually directory ...
+;; try to reconfig projectile to fix?
+(use-package projectile
+  :ensure t
+  :defer 2
+  :config
+  (projectile-mode)
+  (use-package helm-projectile
+    :ensure t
+    :bind ("C-c p h")
+    :config (helm-projectile-on)))
+
+(require 'platformio-mode)
+
+;; Add the required company backend.
+(add-to-list 'company-backends 'company-irony)
+
+(add-to-list 'projectile-project-root-files "platformio.ini")
+
+;; Enable irony for all c++ files, and platformio-mode only
+;; when needed (platformio.ini present in project root).
+(add-hook 'c++-mode-hook (lambda ()
+                           (irony-mode)
+                           (irony-eldoc)
+                           (platformio-conditionally-enable)))
+
+;; Use irony's completion functions.
+(add-hook 'irony-mode-hook
+          (lambda ()
+            (define-key irony-mode-map [remap completion-at-point]
+              'irony-completion-at-point-async)
+
+            (define-key irony-mode-map [remap complete-symbol]
+              'irony-completion-at-point-async)
+
+            (irony-cdb-autosetup-compile-options)))
+            
+;; Setup irony for flycheck.
+(add-hook 'flycheck-mode-hook 'flycheck-irony-setup)
 
 ;;;;;
 ;; markdown
