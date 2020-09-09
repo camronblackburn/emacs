@@ -1,0 +1,105 @@
+finally documenting emacs user stuff so i stop googling the same commands  over and
+over ....
+
+* General
+  delete extra empty lines around current line: ~C-x C-o~
+  remove indentations to create a single line: ~delete-indentation~ bound to
+  ~M-^~ (aka ~M-S-6~)
+
+  view what mode you're in /  help / quick command list  ~C-h m~
+
+* Org-mode
+  link images in notes:
+  C-u C-c C-l then type file path and description (optional)
+
+
+  links and references to dive into over time:
+  https://orgmode.org/manual/
+  http://doc.norang.ca/org-mode.html
+
+  to show images in org file:
+  C-c C-x C-v
+
+  export to html or latex or PDF:
+
+** Formatting
+***
+    You can make words
+    *bold*,
+    /italic/,
+    _underlined_ ,
+    =verbatim= ,
+    ~code~ , and
+    +strike-through+
+
+*** Lists
+    Three different types of lists you can create in org-mode
+    1. unordered simple bullet point lists can be made using "-", "*" (but must be indented so that it doesn't appear as a top-level headline), or "+":
+       - this can be a point
+       - or this can be a point
+       - or this can be. but they'll all render the same
+    2. ordered lists - started with any indented numbering. example in this description, but can also create embedded lists
+       1) point number 1
+       3) point number 2
+       4) point number 3
+    3. description lists for creating definitions and stuff!
+       - term1 :: defined as x
+       - term2 :: defined as y
+
+
+    TODO: fix automatic indenting in org-mode config
+
+    All lists can have check boxes at the front of them - only need to add "[ ]" to
+    the start. or it can be automatically created with a checkbox by starting the
+    new point with ~M-S-ret~.
+    - [X] I already completed this
+    - [ ] Then this needs to happen
+
+    checkpoints can be marked as "complete" with ~C-c C-c~
+
+
+*** Tables
+    |   | A  | B  | C  |
+    |---+----+----+----|
+    | 1 | A1 | B1 | C1 |
+    | 2 | A2 | B2 | C2 |
+    | 3 | A3 | B3 | C3 |
+    | 4 | A4 | B4 | C4 |
+    <tab> to auto-complete table and resize
+
+** Calendar/Agenda
+   - add to-do items using org-capture  : C-c c t
+   - check off a todo item as "done": $
+   - you can change priority of each item with S-<up> or S-<down>
+   - add scheduled date: C-c C-s
+     - note: I set to default to whatever the date is when it been created in init file
+   - add deadline: C-c C-d
+   - view todolist with calendar breakdown: C-c t
+     - S-e to expand todo notes
+     - e to add effort
+     - ret to open todo with more details in todo.org
+
+* Helm
+  - [ ] explore Helm ~helm-ff-do-grep~ with saving results to grep buffer . . .
+
+* minor modes
+** auto-fill
+   In .init file autofill is set to 79 characters by default - this can be toggled
+   on/off with ~M-x-auto-fill-mode~
+* platformIO
+[[file:http:/nickgeorge.net/programming/platformio_emcas/][documentation]]
+installed platformio with homebrew, but it also installed pyhton3 locally to my
+laptop and pip dependencies outside of pyenv which is where I track all the
+python virtualenvs
+http://nickgeorge.net/programming/platformio_emcas/
+* Serial port
+Open serial terminal with `M-x serial-term`
+will prompt you for: serial port, baud rate
+it will run list program that opens a ansi-term shell that defaults to char
+mode which makes normal emacs keyboard shortcuts unusable for some reason (look
+into changing this in config file) to fix run `C-c C-j` to switch to line mode
+
+
+* Magit
+
+* HTML

@@ -3,10 +3,15 @@ elpa
 helm-adaptive-history
 transient
 
-## ignore autsaves and recent files
+## ignore autosaves and recent files
 autosaves
 auto-save-list
 recentf
 
+
+## ignore other automated emacs files that have popped up ..
+.python-version
+bookmarks
+projectile-bookmarks.eld
 
 
