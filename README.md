@@ -1,6 +1,8 @@
 # emacs
 emacs installation and config
 
+forked from Purcell config and modifications made as follows:
+
 ## Download Emacs for macOS
 [Emacs 26.3](https://emacsformacosx.com/)
 
@@ -22,7 +24,8 @@ Note: run `sudo chmod x+a <script name>` to convert script to executable.
 
 Following instructions from [here](https://emacsformacosx.com/tips)
 
-
+## Latex
+having problems getting org-mode to export a PDF to emacs pdf-viewer or DocView. when exporting pdf it opens in default MacOS Preview app . . . updated org-file-app variable to point to docview instead of default
 
 
 

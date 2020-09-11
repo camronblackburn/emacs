@@ -289,9 +289,16 @@
 (setq diary-file "/Users/cblackburn/tracking/cal")
 (setq org-agenda-include-diary t)
 
+
+;; change exported pdf and html to open in emacs (not Preview or Chrome)
+(setq-default org-file-apps
+              '((auto-mode . emacs)
+                ("\\.mm\\'" . default)
+                ("\\.x?html?\\'" . default)
+                ("\\.pdf\\'" . doc-view)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;; Interactive functions;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Interactive functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; remember to use these
 
 (defun jump-to-symbol-internal (&optional backwardp)

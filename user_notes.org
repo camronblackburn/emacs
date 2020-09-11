@@ -106,14 +106,3 @@ into changing this in config file) to fix run `C-c C-j` to switch to line mode
   ~C-c C-v~ opens the html file in the browser to view it rendered 
 
 
-* Installation mods
-  I forked this repo from Purcell's init.el file but making changes for
-  development that fit work .. [[https://www.seas.upenn.edu/~chaoliu/2017/01/03/emacs_configuration/][this blogpost]] has been hlepful for more embedded
-  / latex related installion 
-** 9/11/20
-I can't figure out why when I export an org mode pdf it automatically opens
-in preview, I would way rather have it stay in latex and open with docview or
-pdf-view .. I had to update pdf-view to be able to open a .pdf but even after
-that it still exporting to preivew
-
-
