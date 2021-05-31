@@ -297,6 +297,9 @@
                 ("\\.x?html?\\'" . default)
                 ("\\.pdf\\'" . doc-view)))
 
+;; control image preview size on per image basis
+(setq org-image-actual-width nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Interactive functions;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; remember to use these
